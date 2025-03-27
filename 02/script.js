@@ -9,3 +9,13 @@
   console.log(tensor);
   tensor.print();
 }
+
+{
+  const tensor = tf.tensor2d([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]);
+  console.log(tensor);
+  tensor.print();
+}
