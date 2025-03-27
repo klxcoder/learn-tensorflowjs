@@ -1,1 +1,3 @@
-console.log('tensor')
+const tensor = tf.scalar(30);
+
+console.log(tensor);
