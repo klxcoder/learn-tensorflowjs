@@ -19,3 +19,17 @@
   console.log(tensor);
   tensor.print();
 }
+
+{
+  const a = tf.tensor1d([1, 2, 3, 4]);
+  const b = tf.tensor1d([2, 3, 4, 5]);
+  a.mul(b).print();
+  tf.mul(a, b).print();
+}
+
+{
+  const a = tf.tensor1d([1, 2, 3, 4]);
+  const b = tf.scalar(5);
+  a.mul(b).print();
+  tf.mul(a, b).print();
+}
