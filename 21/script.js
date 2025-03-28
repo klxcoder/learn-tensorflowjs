@@ -71,17 +71,15 @@ const rest = () => {
 
   function normalize(arr, _min, _max) {
 
-    const min = tfmin(arr)
-    const max = tfmax(arr)
+    const min = _min || tfmin(arr)
+    const max = _max || tfmax(arr)
     const arrSubtractMin = getArrSubtractMin(arr, min)
     const rangeSize = getRangeSize(max, min)
     const normalizedValues = getNormalizedValues(arrSubtractMin, rangeSize)
 
     const result = tf.tidy(function () {
-      const MIN_VALUES = _min || tf.tensor(min);
-      const MAX_VALUES = _max || tf.tensor(max);
       const NORMALIZED_VALUES = tf.tensor(normalizedValues);
-      return { NORMALIZED_VALUES, MIN_VALUES, MAX_VALUES };
+      return { NORMALIZED_VALUES, min, max };
     });
 
     return result;
@@ -97,14 +95,6 @@ const rest = () => {
   console.log('Normalized Values:');
 
   FEATURE_RESULTS.NORMALIZED_VALUES.print();
-
-  console.log('Min Values:');
-
-  FEATURE_RESULTS.MIN_VALUES.print();
-
-  console.log('Max Values:');
-
-  FEATURE_RESULTS.MAX_VALUES.print();
 
   // Now actually create and define model architecture.
   const model = tf.sequential()
@@ -147,15 +137,11 @@ const rest = () => {
   function evaluate() {
     // Predict answer for a single piece of data.
     tf.tidy(function () {
-      let newInput = normalize([[750, 1]], FEATURE_RESULTS.MIN_VALUES, FEATURE_RESULTS.MAX_VALUES)
+      let newInput = normalize([[750, 1]], FEATURE_RESULTS.min, FEATURE_RESULTS.max)
 
       let output = model.predict(newInput.NORMALIZED_VALUES)
       output.print()
 
-      // Finally when you no longer need to make any more predictions,
-      // clean up remaining Tensors.
-      FEATURE_RESULTS.MIN_VALUES.dispose()
-      FEATURE_RESULTS.MAX_VALUES.dispose()
       model.dispose()
 
       console.log(tf.memory().numTensors)
