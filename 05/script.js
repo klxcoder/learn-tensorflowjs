@@ -92,3 +92,15 @@ console.log('Max Values:');
 FEATURE_RESULTS.MAX_VALUES.print();
 
 INPUTS_TENSOR.dispose();
+
+// Now actually create and define model architecture.
+const model = tf.sequential()
+
+// We will use one dense layer with 1 neuron (units) and an input of
+// 2 input feature values (representing house size and number of rooms)
+
+model.add(tf.layers.dense({ inputShape: [2], units: 1 }))
+
+model.summary()
+
+// train()
