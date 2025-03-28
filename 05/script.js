@@ -72,3 +72,23 @@ function normalize(tensor, min, max) {
   return result;
 
 }
+
+// Normalize all input feature arrays and then 
+
+// dispose of the original non normalized Tensors.
+
+const FEATURE_RESULTS = normalize(INPUTS_TENSOR);
+
+console.log('Normalized Values:');
+
+FEATURE_RESULTS.NORMALIZED_VALUES.print();
+
+console.log('Min Values:');
+
+FEATURE_RESULTS.MIN_VALUES.print();
+
+console.log('Max Values:');
+
+FEATURE_RESULTS.MAX_VALUES.print();
+
+INPUTS_TENSOR.dispose();
