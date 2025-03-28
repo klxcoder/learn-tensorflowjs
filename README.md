@@ -65,3 +65,4 @@
   - [tf.randomUniform](https://klxcoder.github.io/learn-tensorflowjs/12/)
   - [tf.reshape](https://klxcoder.github.io/learn-tensorflowjs/13/)
   - [tf.slice](https://klxcoder.github.io/learn-tensorflowjs/14/)
+  - [tf.reverse](https://klxcoder.github.io/learn-tensorflowjs/15/)
