@@ -65,6 +65,7 @@ const rest = () => {
 
     const min = tfmin(arr)
     const max = tfmax(arr)
+    const arrSubtractMin = getArrSubtractMin(arr, min)
     const rangeSize = getRangeSize(max, min)
 
     const result = tf.tidy(function () {
@@ -72,7 +73,7 @@ const rest = () => {
       const MIN_VALUES = _min || tf.tensor(min);
       const MAX_VALUES = _max || tf.tensor(max);
 
-      const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(getArrSubtractMin(arr, min));
+      const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(arrSubtractMin);
 
       const RANGE_SIZE = tf.tensor(rangeSize);
 
