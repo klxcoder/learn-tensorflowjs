@@ -128,5 +128,23 @@ async function train() {
   console.log("Average error loss: " + Math.sqrt(results.history.loss[results.history.loss.length - 1]))
   console.log("Average validation error loss: " + Math.sqrt(results.history.val_loss[results.history.val_loss.length - 1]))
 
-  // evaluate(); // Once trained evaluate the model.
+  evaluate(); // Once trained evaluate the model.
+}
+
+function evaluate() {
+  // Predict answer for a single piece of data.
+  tf.tidy(function () {
+    let newInput = normalize(tf.tensor2d([[750, 1]]), FEATURE_RESULTS.MIN_VALUES, FEATURE_RESULTS.MAX_VALUES)
+
+    let output = model.predict(newInput.NORMALIZED_VALUES)
+    output.print()
+
+    // Finally when you no longer need to make any more predictions,
+    // clean up remaining Tensors.
+    FEATURE_RESULTS.MIN_VALUES.dispose()
+    FEATURE_RESULTS.MAX_VALUES.dispose()
+    model.dispose()
+
+    console.log(tf.memory().numTensors)
+  })
 }
