@@ -37,6 +37,14 @@ const tfmax = (arr) => {
   return [maxSize, maxBedroom]
 }
 
+const getArrSubtractMin = (_arr, min) => {
+  const arr = []
+  _arr.forEach((row) => {
+    arr.push([row[0] - min[0], row[1] - min[1]])
+  })
+  return arr
+}
+
 const rest = () => {
 
   // Input feature Array of Arrays needs 2D tensor to store.
@@ -67,9 +75,7 @@ const rest = () => {
 
       // And store the results in a new Tensor.
 
-      const TENSOR_SUBTRACT_MIN_VALUE = tf.sub(tensor, MIN_VALUES);
-
-
+      const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(getArrSubtractMin(arr, tfmin(arr)));
 
       // Calculate the range size of possible values.
 
