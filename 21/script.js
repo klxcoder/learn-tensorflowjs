@@ -21,8 +21,6 @@ const rest = () => {
 
   // Input feature Array of Arrays needs 2D tensor to store.
 
-  const INPUTS_TENSOR = tf.tensor2d(INPUTS);
-
   // Output can stay 1 dimensional.
 
   const OUTPUTS_TENSOR = tf.tensor1d(OUTPUTS);
@@ -31,9 +29,11 @@ const rest = () => {
 
   // with respect to each column of values contained in that Tensor.
 
-  function normalize(tensor, min, max) {
+  function normalize(arr, min, max) {
 
     const result = tf.tidy(function () {
+
+      const tensor = tf.tensor(arr)
 
       // Find the minimum value contained in the Tensor.
 
@@ -77,7 +77,7 @@ const rest = () => {
 
   // dispose of the original non normalized Tensors.
 
-  const FEATURE_RESULTS = normalize(INPUTS_TENSOR);
+  const FEATURE_RESULTS = normalize(INPUTS);
 
   console.log('Normalized Values:');
 
@@ -90,8 +90,6 @@ const rest = () => {
   console.log('Max Values:');
 
   FEATURE_RESULTS.MAX_VALUES.print();
-
-  INPUTS_TENSOR.dispose();
 
   // Now actually create and define model architecture.
   const model = tf.sequential()
@@ -134,7 +132,7 @@ const rest = () => {
   function evaluate() {
     // Predict answer for a single piece of data.
     tf.tidy(function () {
-      let newInput = normalize(tf.tensor2d([[750, 1]]), FEATURE_RESULTS.MIN_VALUES, FEATURE_RESULTS.MAX_VALUES)
+      let newInput = normalize([[750, 1]], FEATURE_RESULTS.MIN_VALUES, FEATURE_RESULTS.MAX_VALUES)
 
       let output = model.predict(newInput.NORMALIZED_VALUES)
       output.print()
