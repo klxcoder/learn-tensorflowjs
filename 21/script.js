@@ -45,6 +45,10 @@ const getArrSubtractMin = (_arr, min) => {
   return arr
 }
 
+const getRangeSize = (max, min) => {
+  return [max[0] - min[0], max[1] - min[1]]
+}
+
 const rest = () => {
 
   // Input feature Array of Arrays needs 2D tensor to store.
@@ -61,6 +65,7 @@ const rest = () => {
 
     const min = tfmin(arr)
     const max = tfmax(arr)
+    const rangeSize = getRangeSize(max, min)
 
     const result = tf.tidy(function () {
 
@@ -69,9 +74,7 @@ const rest = () => {
 
       const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(getArrSubtractMin(arr, min));
 
-      // Calculate the range size of possible values.
-
-      const RANGE_SIZE = tf.sub(MAX_VALUES, MIN_VALUES);
+      const RANGE_SIZE = tf.tensor(rangeSize);
 
       // Calculate the adjusted values divided by the range size as a new Tensor.
 
