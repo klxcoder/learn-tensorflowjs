@@ -71,3 +71,4 @@
   - [tf.dot](https://klxcoder.github.io/learn-tensorflowjs/18/)
   - [tf.stack](https://klxcoder.github.io/learn-tensorflowjs/19/)
   - [tf.clone](https://klxcoder.github.io/learn-tensorflowjs/20/)
+  - [recreate 05](https://klxcoder.github.io/learn-tensorflowjs/21/)
