@@ -61,8 +61,6 @@ const rest = () => {
 
     const result = tf.tidy(function () {
 
-      const tensor = tf.tensor(arr)
-
       // Find the minimum value contained in the Tensor.
 
       const MIN_VALUES = min || tf.tensor(tfmin(arr));
