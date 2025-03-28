@@ -27,6 +27,16 @@ const tfmin = (arr) => {
   return [minSize, minBedroom]
 }
 
+const tfmax = (arr) => {
+  let maxSize = arr[0][0]
+  let maxBedroom = arr[0][1]
+  arr.forEach((row) => {
+    if (row[0] > maxSize) maxSize = row[0]
+    if (row[1] > maxBedroom) maxBedroom = row[1]
+  })
+  return [maxSize, maxBedroom]
+}
+
 const rest = () => {
 
   // Input feature Array of Arrays needs 2D tensor to store.
@@ -51,9 +61,7 @@ const rest = () => {
 
       // Find the maximum value contained in the Tensor.
 
-      const MAX_VALUES = max || tf.max(tensor, 0);
-
-
+      const MAX_VALUES = max || tf.tensor(tfmax(arr));
 
       // Now subtract the MIN_VALUE from every value in the Tensor
 
