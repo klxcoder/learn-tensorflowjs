@@ -59,21 +59,15 @@ const rest = () => {
 
   function normalize(arr, _min, _max) {
 
+    const min = tfmin(arr)
+    const max = tfmax(arr)
+
     const result = tf.tidy(function () {
 
-      // Find the minimum value contained in the Tensor.
+      const MIN_VALUES = _min || tf.tensor(min);
+      const MAX_VALUES = _max || tf.tensor(max);
 
-      const MIN_VALUES = _min || tf.tensor(tfmin(arr));
-
-      // Find the maximum value contained in the Tensor.
-
-      const MAX_VALUES = _max || tf.tensor(tfmax(arr));
-
-      // Now subtract the MIN_VALUE from every value in the Tensor
-
-      // And store the results in a new Tensor.
-
-      const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(getArrSubtractMin(arr, tfmin(arr)));
+      const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(getArrSubtractMin(arr, min));
 
       // Calculate the range size of possible values.
 
@@ -82,8 +76,6 @@ const rest = () => {
       // Calculate the adjusted values divided by the range size as a new Tensor.
 
       const NORMALIZED_VALUES = tf.div(TENSOR_SUBTRACT_MIN_VALUE, RANGE_SIZE);
-
-
 
       return { NORMALIZED_VALUES, MIN_VALUES, MAX_VALUES };
 
