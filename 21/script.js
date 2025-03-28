@@ -57,17 +57,17 @@ const rest = () => {
 
   // with respect to each column of values contained in that Tensor.
 
-  function normalize(arr, min, max) {
+  function normalize(arr, _min, _max) {
 
     const result = tf.tidy(function () {
 
       // Find the minimum value contained in the Tensor.
 
-      const MIN_VALUES = min || tf.tensor(tfmin(arr));
+      const MIN_VALUES = _min || tf.tensor(tfmin(arr));
 
       // Find the maximum value contained in the Tensor.
 
-      const MAX_VALUES = max || tf.tensor(tfmax(arr));
+      const MAX_VALUES = _max || tf.tensor(tfmax(arr));
 
       // Now subtract the MIN_VALUE from every value in the Tensor
 
