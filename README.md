@@ -69,3 +69,4 @@
   - [tf.concat](https://klxcoder.github.io/learn-tensorflowjs/16/)
   - [shape](https://klxcoder.github.io/learn-tensorflowjs/17/)
   - [tf.dot](https://klxcoder.github.io/learn-tensorflowjs/18/)
+  - [tf.stack](https://klxcoder.github.io/learn-tensorflowjs/19/)
