@@ -67,3 +67,4 @@
   - [tf.slice](https://klxcoder.github.io/learn-tensorflowjs/14/)
   - [tf.reverse](https://klxcoder.github.io/learn-tensorflowjs/15/)
   - [tf.concat](https://klxcoder.github.io/learn-tensorflowjs/16/)
+  - [shape](https://klxcoder.github.io/learn-tensorflowjs/17/)
