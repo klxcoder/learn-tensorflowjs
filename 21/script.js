@@ -17,6 +17,16 @@ function fisherYatesShuffle(array) {
 
 fisherYatesShuffle([INPUTS, OUTPUTS])
 
+const tfmin = (arr) => {
+  let minSize = arr[0][0]
+  let minBedroom = arr[0][1]
+  arr.forEach((row) => {
+    if (row[0] < minSize) minSize = row[0]
+    if (row[1] < minBedroom) minBedroom = row[1]
+  })
+  return [minSize, minBedroom]
+}
+
 const rest = () => {
 
   // Input feature Array of Arrays needs 2D tensor to store.
@@ -37,9 +47,7 @@ const rest = () => {
 
       // Find the minimum value contained in the Tensor.
 
-      const MIN_VALUES = min || tf.min(tensor, 0);
-
-
+      const MIN_VALUES = min || tf.tensor(tfmin(arr));
 
       // Find the maximum value contained in the Tensor.
 
