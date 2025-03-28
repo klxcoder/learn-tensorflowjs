@@ -61,3 +61,4 @@
   - [tf.ones](https://klxcoder.github.io/learn-tensorflowjs/07/)
   - [tf.zeros](https://klxcoder.github.io/learn-tensorflowjs/08/)
   - [tf.rand](https://klxcoder.github.io/learn-tensorflowjs/09/)
+  - [tf.randomUniformInt](https://klxcoder.github.io/learn-tensorflowjs/11/)
