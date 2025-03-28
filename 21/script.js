@@ -49,6 +49,14 @@ const getRangeSize = (max, min) => {
   return [max[0] - min[0], max[1] - min[1]]
 }
 
+const getNormalizedValues = (arrSubtractMin, rangeSize) => {
+  const arr = []
+  arrSubtractMin.forEach((row) => {
+    arr.push([row[0] / rangeSize[0], row[1] / rangeSize[1]])
+  })
+  return arr
+}
+
 const rest = () => {
 
   // Input feature Array of Arrays needs 2D tensor to store.
@@ -67,22 +75,13 @@ const rest = () => {
     const max = tfmax(arr)
     const arrSubtractMin = getArrSubtractMin(arr, min)
     const rangeSize = getRangeSize(max, min)
+    const normalizedValues = getNormalizedValues(arrSubtractMin, rangeSize)
 
     const result = tf.tidy(function () {
-
       const MIN_VALUES = _min || tf.tensor(min);
       const MAX_VALUES = _max || tf.tensor(max);
-
-      const TENSOR_SUBTRACT_MIN_VALUE = tf.tensor(arrSubtractMin);
-
-      const RANGE_SIZE = tf.tensor(rangeSize);
-
-      // Calculate the adjusted values divided by the range size as a new Tensor.
-
-      const NORMALIZED_VALUES = tf.div(TENSOR_SUBTRACT_MIN_VALUE, RANGE_SIZE);
-
+      const NORMALIZED_VALUES = tf.tensor(normalizedValues);
       return { NORMALIZED_VALUES, MIN_VALUES, MAX_VALUES };
-
     });
 
     return result;
