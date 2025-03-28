@@ -59,15 +59,7 @@ const getNormalizedValues = (arrSubtractMin, rangeSize) => {
 
 const rest = () => {
 
-  // Input feature Array of Arrays needs 2D tensor to store.
-
-  // Output can stay 1 dimensional.
-
   const OUTPUTS_TENSOR = tf.tensor1d(OUTPUTS);
-
-  // Function to take a Tensor and normalize values
-
-  // with respect to each column of values contained in that Tensor.
 
   function normalize(arr, _min, _max) {
 
@@ -86,9 +78,6 @@ const rest = () => {
 
   }
 
-  // Normalize all input feature arrays and then 
-
-  // dispose of the original non normalized Tensors.
 
   const FEATURE_RESULTS = normalize(INPUTS);
 
