@@ -58,3 +58,4 @@
   - [tf.loadLayersModel relative path](https://klxcoder.github.io/learn-tensorflowjs/04/)
   - [predict house price](https://klxcoder.github.io/learn-tensorflowjs/05/)
   - [tf.range](https://klxcoder.github.io/learn-tensorflowjs/06/)
+  - [tf.ones](https://klxcoder.github.io/learn-tensorflowjs/07/)
